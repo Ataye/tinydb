@@ -312,7 +312,7 @@ class Query(object):
                      a list of which at least one document has to be contained
                      in the tested document.
         """
-        if callable(cond):
+        if hasattr(cond, '__call__'):
             def _cmp(value):
                 return is_sequence(value) and any(cond(e) for e in value)
 
@@ -345,7 +345,7 @@ class Query(object):
         :param cond: Either a query that all documents have to match or a list
                      which has to be contained in the tested document.
         """
-        if callable(cond):
+        if hasattr(cond, '__call__'):
             def _cmp(value):
                 return is_sequence(value) and all(cond(e) for e in value)
 

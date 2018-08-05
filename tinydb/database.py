@@ -471,7 +471,7 @@ class Table(object):
         """
         doc_ids = _get_doc_ids(doc_ids, eids)
 
-        if callable(fields):
+        if hasattr(fields, '__call__'):
             return self.process_elements(
                 lambda data, doc_id: fields(data[doc_id]),
                 cond, doc_ids
